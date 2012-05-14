@@ -1,0 +1,46 @@
+Réduction du nombre de tags :
+- La contraction de NN1 (noms communs singuliers) et NN2 (noms communs pluriels) dans N
+provoque des distorsions, notamment avec les determinants qui ne sont pas les mêmes
+selon la catégorie.
+- La contraction de VBM (am) et de VBR (are) dans V soulève le même problème.
+
+Probabilités du mot 'place':
+Nom : 0.930555555556
+Verbe : 0.0416666666667
+Il n'est donc pas très syntaxiquement ambigu.
+
+En cherchant des mots syntaxiquement ambigus
+(trouvés en affichant les pobabilites dans [0.3-0.7]), on a :
+
+excess ==> N: 0.500000
+excess ==> PREP: 0.500000
+flows ==> N: 0.500000
+flows ==> V: 0.500000
+flush ==> ADJ: 0.500000
+flush ==> N: 0.500000
+fly ==> N: 0.500000
+fly ==> V: 0.500000
+focus ==> N: 0.500000
+focus ==> V: 0.500000
+
+And so on...
+
+Quelques resultats de BasicParse :
+
+the primary election took place yesterday
+['DET', 'N', 'N', 'V', 'N', 'ADV']
+0.546935256629
+
+The Fulton County Grand Jury said Friday an investigation of Atlanta recent primary election produced evidence that any irregularities took place
+['DET', 'N', 'N', 'ADJ', 'N', 'V', 'N', 'DET', 'N', 'PREP', 'N', 'ADJ', 'N', 'N', 'V', 'N', 'CS', 'PRO', 'N', 'V', 'N']
+0.460455986234
+
+Our pin clips and self nuts achieved dominance in just a few years time despite substantial well established competition
+['PRO', 'N', 'N', 'COORD', 'N', 'N', 'V', 'N', 'PREP', 'ADV', 'DET', 'N', 'N', 'N', 'PREP', 'ADJ', 'ADV', 'V', 'N']
+0.259452333489
+
+Et mon petit contre-exemple :
+He clips that and I place it
+['PRO', 'N', 'CS', 'COORD', 'PRO', 'N', 'PRO']
+0.75384477695
+Il s'est trompé pour chaque verbe, et affiche un taux de probabilité de 75% !
