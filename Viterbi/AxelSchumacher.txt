@@ -1,8 +1,10 @@
 Réduction du nombre de tags :
 - La contraction de NN1 (noms communs singuliers) et NN2 (noms communs pluriels) dans N
-provoque des distorsions, notamment avec les determinants qui ne sont pas les mêmes
+provoque des distorsions, notamment avec les déterminants qui ne sont pas les mêmes
 selon la catégorie.
 - La contraction de VBM (am) et de VBR (are) dans V soulève le même problème.
+
+===========================
 
 Probabilités du mot 'place':
 Nom : 0.930555555556
@@ -10,7 +12,7 @@ Verbe : 0.0416666666667
 Il n'est donc pas très syntaxiquement ambigu.
 
 En cherchant des mots syntaxiquement ambigus
-(trouvés en affichant les pobabilites dans [0.3-0.7]), on a :
+(trouvés en affichant les probabilités dans [0.3-0.7]), on a (entre autres) :
 
 excess ==> N: 0.500000
 excess ==> PREP: 0.500000
@@ -25,22 +27,123 @@ focus ==> V: 0.500000
 
 And so on...
 
-Quelques resultats de BasicParse :
+===================================
+
+Quelques résultats de BasicParse :
 
 the primary election took place yesterday
 ['DET', 'N', 'N', 'V', 'N', 'ADV']
 0.546935256629
+Il y a une faute : "primary" n'est pas un nom ici.
 
 The Fulton County Grand Jury said Friday an investigation of Atlanta recent primary election produced evidence that any irregularities took place
 ['DET', 'N', 'N', 'ADJ', 'N', 'V', 'N', 'DET', 'N', 'PREP', 'N', 'ADJ', 'N', 'N', 'V', 'N', 'CS', 'PRO', 'N', 'V', 'N']
 0.460455986234
+
+the election was conducted
+['DET', 'N', 'V', 'V']
+0.999177244946
 
 Our pin clips and self nuts achieved dominance in just a few years time despite substantial well established competition
 ['PRO', 'N', 'N', 'COORD', 'N', 'N', 'V', 'N', 'PREP', 'ADV', 'DET', 'N', 'N', 'N', 'PREP', 'ADJ', 'ADV', 'V', 'N']
 0.259452333489
 
 Et mon petit contre-exemple :
-He clips that and I place it
+He places that and I place it
 ['PRO', 'N', 'CS', 'COORD', 'PRO', 'N', 'PRO']
 0.75384477695
-Il s'est trompé pour chaque verbe, et affiche un taux de probabilité de 75% !
+Il s'est trompé pour chaque verbe
+
+==================================
+
+Avec Viterbi, les choses s'améliorent mais tout n'est pas parfait :
+
+the primary election took place yesterday
+['DET', 'ADJ', 'N', 'V', 'N', 'ADV']
+1.66929093396e-06
+"primary" devient un adjectif, ce qui est correct
+
+Le "Jury" reste inchangé
+
+L'"election" aussi
+
+Our pin clips and self nuts achieved dominance in just a few years time
+despite substantial well established competition
+['PRO', 'N', 'N', 'COORD', 'N', 'N', 'V', 'N', 'PREP', 'ADV', 'DET', 'N', 'N',
+'N', 'PREP', 'ADJ', 'N', 'V', 'N']
+2.49998328876e-19
+Il s'est trompé là où le Basic ne s'est pas trompé : ici "well" n'est pas un nom
+mais bien un adverbe, mais il est plus fréquent de trouver un adjectif devant
+un nom que devant un adverbe
+
+He places that and I place this
+['PRO', 'N', 'CS', 'COORD', 'PRO', 'V', 'DET']
+2.1386165022e-11
+Il s'est encore trompé pour "places", qui reste trop rare sous la forme de verbe,
+mais a réussi à trouver que le deuxième "place" est un verbe
+
+=================================
+
+En n'utilisant que 75% du corpus :
+
+Aucune différence
+
+En n'utilisant que 50% du corpus :
+
+the primary election took place yesterday
+['DET', 'N', 'N', 'V', 'N', 'ADV']
+1.64326092773e-06
+
+"primary" est redevenu un nom, comme pour le Basic
+
+Pas d'autre erreur, si ce n'est que "clips" n'est plus défini...
+
+En n'utilisant que 25% du corpus :
+
+Pas plus d'erreur qu'à 50 %
+
+==================================
+
+Le préprocesseur va assigner les Tags les plus fréquents si le premier mot est
+inconnu, et se servir du Tag du mot précédent pour les autres.
+
+Quelques exemples saugrenus :
+
+Unknown word found: xylophone
+My xylophone smells funny
+['PRO', 'V', 'V', 'ADJ']
+0.000160606359847
+
+Il considère que "xylophone" est un verbe, parce qu'il regroupe tous les
+pronoms dans la même catégorie, et s'attend donc à ce qu'un verbe suive un
+pronom.
+
+Unknown word found: wasn't
+Unknown word found: zyxt
+I wonder what my life would have been if it wasn't for me to discover what a zyxt
+is
+['PRO', 'N', 'CS', 'PRO', 'N', 'V', 'V', 'V', 'CS', 'PRO', 'V', 'PREP', 'PRO',
+'INFL', 'V', 'CS', 'DET', 'N', 'V']
+2.06342441501e-20
+
+Outre les autres erreurs, il a reconnu que "wasn't" était un verbe, parce que
+précédé d'un pronom, et "zyxt" a été catégorisé comme un nom grace au
+déterminant le précédant.
+
+==================================
+
+Analyse syntaxique :
+
+La dernière colonne du corpus étiqueté représente des balises ouvrantes et
+fermantes de la structure syntaxique de la phrase, stockée ainsi sous forme
+d'arbre. Tant qu'avec Viterbi seul le mot précédent est considéré, trois
+possibilités s'ouvrent pour chaque mot :
+- Le mot précédent fait partie du même noeud syntaxique
+- Le mot précédent clos un noeud:
+    - Le mot courant ouvre une branche et est donc séparée du mot précédent
+    - Le mot courant fait partie du noeud contenant la branche du mot
+      précédent
+
+On pourrait donc étiqueter et quantifier les probabilités de chaque mot, et
+de chaque Tag, dans chacune de ces configurations, et améliorer l'algorithme
+existant en tentant de respecter la syntaxe dans cette moindre mesure.

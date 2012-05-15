@@ -21,22 +21,58 @@ class Viterbi:
     """ Implements Viterbi algorithm
     """
     def __init__(self, Words, Tags, Tag_pr, Transition_pr, Emission_pr):
-        self.Words = Words  # all the different words found in the corpus
-        self.Tags= Tags     # all the (simplified) tags found in the corpus
-        self.Tag_pr = Tag_pr    # Tag probabilities
-        self.Transition_pr = Transition_pr  # Probability of transitions between tags
-        self.Emission_pr = Emission_pr  # Probability of a word knowing the tag
+        self.Words = Words   # all the different words found in the corpus
+        self.Tags = Tags     # all the (simplified) tags found in the corpus
+        self.Tag_pr = Tag_pr # Tag probabilities
+        self.Transition_pr = Transition_pr # Probability of transitions between tags
+        self.Emission_pr = Emission_pr     # Probability of a word knowing the tag
         
 
     def ViterbiParse(self, Input):
         " Infers syntactic categories in Input, using transition probabilities "
         FirstWord = Input[0]  
         # The Tag probability Table is a list of dicts
-        # It is initialized as Pr(Word|Tag) * Pr(Tag)
+        # It is initialized as Pr(Word|Tag) * Pr(Tag) * 1.0
         Tag_Pr_Table = [ dict([ (T, self.Emission_pr[FirstWord, T] * self.Tag_pr[T]) for T in self.Tags]) ]
         PathToTag = dict([(T,[T]) for T in self.Tags])  # contains paths as lists
+
+        # Looking for unknown words
+        W = FirstWord
+        found = False
+        for KnownWord in self.Words:
+            if (KnownWord == W):
+                found = True
+                break
+        if (not found):
+            for T in self.Tags:
+                self.Emission_pr[(W, T)] = self.Tag_pr[T]
+
+        #for T in self.Tags:
+        #    if (Tag_Pr_Table[0][T] != 0):
+        #        print "W %s T %s prob %f" % (FirstWord, T, Tag_Pr_Table[0][T])
         
         for t in range(1,len(Input)): # t means 'time'
+            # Looking for unknown words
+            W = Input[t]
+            PW = Input[t-1]
+            found = False
+            for KnownWord in self.Words:
+                if (KnownWord == W):
+                    found = True
+                    break
+            if (not found):
+                print "Unknown word found: %s" % W
+                # Looking for the best tag for the previous word
+                BPr = 0.0
+                BPT = None
+                for PT in self.Tags:
+                    Pr = self.Emission_pr[(PW, PT)]
+                    if (Pr > BPr):
+                        BPr = Pr
+                        BPT = PT
+                for T in self.Tags:
+                    self.Emission_pr[(W, T)] = self.Transition_pr[(BPT, T)]
+
             # For each input tagged word, a posteriori tag probabilities are updated
             NewTagPosteriors = dict()
             NewPathToTag = dict()
@@ -45,29 +81,38 @@ class Viterbi:
                 # Recursive computation of Tag probability
                 # One looks for the Tag sequence that maximizes Pr(TagSequence & WordSequence)
                 # Since we have limited memory, the probability of the current Tag is retrieved
-                # from the probability of PreviousTag and from the transition from PreviousTag to Tag.
+                # from the probability of PreviousTag and
+                # from the transition from PreviousTag to Tag.
                 # Max Pr(Word & Tag_sequence) =
                 # Max( Pr(PreviousTag) * Pr(Tag|PreviousTag) ) * Pr(Word|Tag)
                 # The PreviousTag that maximizes Pr(Word & Tag_sequence) also
                 # maximizes Pr(Tag_sequence | Word)
 
-                # determine the best PreviousTag (call it BestPTag)
+                # Determine the best PreviousTag (call it BestPTag)
                 # and its associated probability (call it prob)
                 # using the (already computed and stored) probability of candidates PreviousT:
                 # Tag_Pr_Table[t-1][PreviousT]
 
-                ########## TO BE DONE ############
-                (prob, BestPTag) = (1, 'N')
+                prob = 0.0
+                BestPTag = T
+                for PT in self.Tags:
+                    newProb = Tag_Pr_Table[t-1][PT]*self.Transition_pr[(PT, T)]*self.Emission_pr[(Input[t], T)]
+                    #if (newProb != 0):
+                    #    print "W %s T %s PT %s pr(PT) %f trans(PT, T) %f em(W, T) %f" % (Input[t], T, PT, Tag_Pr_Table[t-1][PT], self.Transition_pr[(PT, T)], self.Emission_pr[(Input[t], T)])
+                    if (newProb > prob):
+                        prob = newProb
+                        BestPTag = PT
 
                 NewTagPosteriors[T] = prob  # one stores the probability of tag T for the current word 
                 NewPathToTag[T] = PathToTag[BestPTag] + [T] # one stores the best path leading to T
-                
+                #if (prob != 0):
+                #    print "W %s T %s PT %s prob %f" % (Input[t], T, BestPTag, prob)
+
             Tag_Pr_Table.append(NewTagPosteriors)
             PathToTag = NewPathToTag    # best paths to the current word
 
         # retrieving best global result
-        (prob, BestTag) = max([ (Tag_Pr_Table[len(Input)-1][LastTag] , LastTag)
-                              for LastTag in self.Tags])
+        (prob, BestTag) = max([ (Tag_Pr_Table[len(Input)-1][LastTag], LastTag) for LastTag in self.Tags])
         return (prob, PathToTag[BestTag])
 
 class HiddenMarkovModel:
@@ -88,12 +133,17 @@ class HiddenMarkovModel:
         self.RetrieveCorpus(Corpus)
         self.GetProbabilities()
         self.Viterbi = Viterbi(self.Words, self.SimpleTags, self.PosProbability, self.PosTransitionProbability, self.WordAsPosProbability)
-        self.Parse = self.Viterbi.ViterbiParse
+        if (1):
+            self.Parse = self.Viterbi.ViterbiParse
+        else:
+            self.Parse = self.BasicParse
 
         
     def RetrieveCorpus(self, Corpus):
         # retrieve tagged text
-        self.TaggedText = Corpus  # list of (word, tag, simpleTag) triplets
+        percent = 1.0
+        print "!!Using %d percent of the corpus...!!" % (percent*100.0)
+        self.TaggedText = Corpus[0:int(percent*len(Corpus))]  # list of (word, tag, simpleTag) triplets
         self.SimpleTags = set([TW[2] for TW in self.TaggedText])    # simple tags actually used
         self.Words = set([TW[0] for TW in self.TaggedText])
 
@@ -183,7 +233,11 @@ if __name__ == '__main__':
         'The Fulton County Grand Jury said Friday an investigation of Atlanta recent primary election produced evidence that any irregularities took place',
         'the election was conducted',
         'Our pin clips and self nuts achieved dominance in just a few years time despite substantial well established competition',
-        'He clips that and I place it'
+        'I place',
+        'He places that and I place this',
+        'I place this and he places that',
+        'My xylophone smells funny',
+        'I wonder what my life would have been if it wasn\'t for me to discover what a zyxt is .'
         ]
     for Sentence in Tests:
         (prob, analysis) = HMM.Parse(Sentence.split())
@@ -191,5 +245,6 @@ if __name__ == '__main__':
         print Sentence
         print analysis
         print prob
-    print "Probability for 'place' to be a noun: %s" % HMM.WordAsPosProbability[('place', 'N')]
-    print "Probability for 'place' to be a verb: %s" % HMM.WordAsPosProbability[('place', 'V')]
+    #for T in HMM.SimpleTags:
+    #    W = 'I'
+    #    print "Probability for %s to be a %s: %s" % (W, T, HMM.WordAsPosProbability[(W, T)])
