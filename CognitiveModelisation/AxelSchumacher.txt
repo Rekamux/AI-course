@@ -1,0 +1,83 @@
+Definite Clause Grammar
+
+Le programme s'arrête pour cause de remplissage de la pile.
+Et pour cause : il tourne indéfiniment dans des boucles du genre :
+gn -> gn, gnp.
+Pour palier cela, il faudrait donner à Prolog une conscience du nombre de mots
+qu'il a besoin de consommer pour appliquer une règle, comme avec une liste.
+Ainsi, il s'arrêterait dès que ses recherches génèreraient des phrases bien plus
+longues que celle donnée en entrée.
+Mais non, cette solution n'est pas simple à implémenter, du moins avec mon niveau de Prolog actuel.
+Aussi, cela vient de l'aspect descendant de Prolog, et une solution serait de changer les règles de grammaire,
+de façon bien entendu atrocement peu élégante.
+
+Famille.pl n'est pas satisfaisante aussi parce qu'elle ne tient pqs du tout compte de la conjugaison des verbes,
+ni de l'accord en genre et en nombre.
+Par exemple, "ses fille parle" est accepté.
+
+===============================
+
+Top Down trace :
+(Pour le faire marcher, j'ai habilement remplacé la règle critique :
+gn --> gn, gnp.
+par :
+gn --> det, n, gnp.
+)
+
+Phrase : la soeur parle de sa cousine a milou
+?- go.
+[det,soeur,parle,de,sa,cousine,a,milou]
+[det,n,parle,de,sa,cousine,a,milou]
+[gn,parle,de,sa,cousine,a,milou]
+[gn,v,de,sa,cousine,a,milou]
+[gn,gv,de,sa,cousine,a,milou]
+[s,de,sa,cousine,a,milou]
+[s,pp,sa,cousine,a,milou]
+[s,pp,det,cousine,a,milou]
+[s,pp,det,n,a,milou]
+[s,pp,gn,a,milou]
+[s,gnp,a,milou]
+[s,gnp,pp,milou]
+[s,gnp,pp,gn]
+[s,gnp,gnp]
+[s,gnp,a,gn]
+[s,gnp,pp,gn]
+[s,gnp,gnp]
+[s,pp,gn,pp,milou]
+[s,gnp,pp,milou]
+[s,gnp,pp,gn]
+[s,gnp,gnp]
+[s,pp,gn,pp,gn]
+[s,gnp,pp,gn]
+[s,gnp,gnp]
+[s,pp,gn,gnp]
+[s,gnp,gnp]
+[s,pp,gn,a,gn]
+[s,gnp,a,gn]
+[s,gnp,pp,gn]
+[...]
+[s,gnp]
+[gn,gv,pp,gn]
+[s,pp,gn]
+[s,gnp]
+[gn,gv,gnp]
+[s,gnp]
+[gn,v,gnp,pp,gn]
+[gn,gv,gnp,pp,gn]
+[s,gnp,pp,gn]
+[s,gnp,gnp]
+[gn,gv,gnp,gnp]
+[s,gnp,gnp]
+[gn,gv,pp,gn]
+[s,pp,gn]
+[s,gnp]
+[gn,gv,gnp]
+[s,gnp]
+[gn,v,gnp,gnp]
+[gn,gv,gnp,gnp]
+[s,gnp,gnp]
+[gn,gv,gnp]
+[s,gnp]
+[gn,gv]
+[s]
+true
