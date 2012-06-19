@@ -1,0 +1,62 @@
+Contexte des phrases :
+======================
+
+Pierre a ronflé :
+
+Pendant sa sieste de l'après-midi, Pierre a ronflé
+
+
+Pierre a ronflé en une heure :
+
+Une heure après avoir commencé à dormir, Pierre a commencé à ronfler
+
+
+Pierre a ronflé pendant une heure :
+
+Une heure du sommeil de Pierre a été accompagnée par ses ronflements
+
+
+Pierre a mangé du gâteau en une heure :
+Syntaxiquement incorrect, mais peut être comprise comme :
+
+Pierre a mis une heure à manger son gâteau
+
+
+Pierre a mangé du gâteau pendant une heure :
+
+Pierre a mangé du gâteau de 14h à 15h, sans nécessairement le terminer
+
+
+Pierre a mangé le gâteau pendant une heure :
+
+Pierre a mangé -sans nécessairement le terminer- du gâteau pendant une heure.
+
+
+Pierre a mangé le gâteau pendant le spectacle :
+
+La durée du spectacle a été suffisante pour Pierre pour manger le gâteau
+
+
+Pierre a mangé le gâteau en une heure :
+
+Pierre a mangé et terminé le gâteau en une heure
+
+
+Pierre a aimé le gâteau :
+
+Pierre a fini de manger le gâteau et il l'a trouvé bon
+
+
+Pierre aimait le gâteau :
+
+Pierre est décédé mais il aimait ce gâteau
+Pierre a changé et n'aime plus ce gâteau
+La recette du gâteau a changé et Pierre ne l'aime pas
+
+
+Pierre aimait le gâteau en 2010 :
+
+Pierre n'aime plus le gâteau, sois parce que ses goûts ont changé, soit parce
+que le gâteau a changé
+
+
