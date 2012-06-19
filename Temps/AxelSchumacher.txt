@@ -24,12 +24,12 @@ Pierre a mis une heure à manger son gâteau
 
 Pierre a mangé du gâteau pendant une heure :
 
-Pierre a mangé du gâteau de 14h à 15h, sans nécessairement le terminer
+Pierre a mangé -sans nécessairement le terminer- du gâteau de 14h à 15h, sans nécessairement le terminer
 
 
 Pierre a mangé le gâteau pendant une heure :
 
-Pierre a mangé -sans nécessairement le terminer- du gâteau pendant une heure.
+Pierre a mangé -sans nécessairement le terminer- le gâteau spécifique pendant une heure.
 
 
 Pierre a mangé le gâteau pendant le spectacle :
@@ -59,4 +59,62 @@ Pierre aimait le gâteau en 2010 :
 Pierre n'aime plus le gâteau, sois parce que ses goûts ont changé, soit parce
 que le gâteau a changé
 
+Premier test
+============
 
+Correct: 1 - Pierre ronfle _PP - 'Pendant sa sieste de l\'apr�s-midi, Pierre a ronfl�'
+== Ok.  >t/_G923/_G935,[im:ronfler_pierre] 
+R�essayer... 
+
+Correct: 1 - Pierre ronfle _PP en une heure - 'Une heure apr�s avoir commenc� � dormir, Pierre a commenc� � ronfler'
+== Ok.  >t/_G1193/d,[im:ronfler_en_unCertain_heureDuree_pierre] 
+== Ok.  >t/_G1193/u,[im:ronfler_en_1_heureDuree_pierre] 
+R�essayer... 
+
+Correct: 1 - Pierre ronfle pendant une heure _PP - 'Une heure du sommeil de Pierre a �t� accompagn�e par ses ronflements'
+== Ok.  >t/_G1238/d,[im:ronfler_pdt_unCertain_heureDuree_pierre] 
+== Ok.  >t/_G1238/u,[im:ronfler_pdt_1_heureDuree_pierre] 
+== Ok.  >t/_G1238/d,[im:ronfler_pdt_unCertain_heureDuree_pierre] 
+== Ok.  >t/_G1238/u,[im:ronfler_pdt_1_heureDuree_pierre] 
+R�essayer... 
+
+Correct: 0 - Pierre mange du g�teau _PP en une heure - 'Pierre a mis une heure � manger son g�teau'
+== Ok.  >t/_G1370/u,[im:manger_gateau_en_1_heureDuree_pierre] 
+R�essayer... 
+
+Correct: 1 - Pierre mange du g�teau pendant une heure _PP - 'Pierre a mang� du g�teau de 14h � 15h, sans n�cessairement le terminer'
+== Ok.  >t/_G1415/u,[im:manger_gateau_pdt_1_heureDuree_pierre] 
+R�essayer... 
+
+Correct: 1 - Pierre mange le g�teau pendant une heure _PP - 'Pierre a mang� -sans n�cessairement le terminer- le g�teau sp�cifique pendant une heure.'
+== Ok.  >t/_G1430/d,[im:manger_ce_gateau_pdt_unCertain_heureDuree_pierre] 
+== Ok.  >t/_G1430/u,[im:manger_ceTypeDe_gateau_pdt_1_heureDuree_pierre] 
+R�essayer... 
+
+Correct: 1 - Pierre mange le g�teau pendant le spectacle _PP - 'La dur�e du spectacle a �t� suffisante pour Pierre pour manger le g�teau'
+== Ok.  >t/_G1457/d,[im:manger_ce_gateau_pdt_ce_spectacle_pierre] 
+== Ok.  >t/_G1457/u,[im:manger_ceTypeDe_gateau_pdt_ceTypeDe_spectacle_pierre] 
+R�essayer... 
+
+Correct: 1 - Pierre mange le g�teau _PP en une heure - 'Pierre a mang� et termin� le g�teau en une heure'
+== Ok.  >t/_G1385/d,[im:manger_ce_gateau_en_unCertain_heureDuree_pierre] 
+== Ok.  >t/_G1385/u,[im:manger_ceTypeDe_gateau_en_1_heureDuree_pierre] 
+R�essayer... 
+
+Correct: 1 - Pierre aime le g�teau _PP - 'Pierre a fini de manger le g�teau et il l\'a trouv� bon'
+== Ok.  >t/_G1109/d,[im:aimer_ce_gateau_pierre] 
+== Ok.  >t/_G1109/u,[im:aimer_ceTypeDe_gateau_pierre] 
+R�essayer... 
+
+Correct: 1 - Pierre aime le g�teau _IMP - 'Pierre est d�c�d� mais il aimait ce g�teau, ou Pierre a chang� et n\'aime plus ce g�teau, ou La recette du g�teau a chang� et Pierre ne l\'aime pas'
+== Ok.  >t/_G1118/d,[im:aimer_ce_gateau_pierre] 
+== Ok.  >t/_G1118/u,[im:aimer_ceTypeDe_gateau_pierre] 
+R�essayer... 
+
+Correct: 1 - Pierre aime le g�teau _IMP en 2010 - 'Pierre n\'aime plus le g�teau, sois parce que ses go�ts ont chang�, soit parce que le g�teau a chang�'
+== Ok.  >t/_G1280/d,[im:aimer_ce_gateau_en_2010_pierre] 
+== Ok.  >t/_G1280/u,[im:aimer_ceTypeDe_gateau_en_2010_pierre] 
+R�essayer... 
+true.
+
+Il a donc échoué lamentablement pour la seule phrase incorrecte
