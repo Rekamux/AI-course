@@ -15,24 +15,24 @@ Ainsi, le programme nous dit que son seul problème est le tough_work, mais qu'i
 Déclarativité
 -------------
 
-Si par exemple on place la règle permettant d'obtenir des nice_surface à partir du filler_compound en premier, le programme la trouve tout de suite et ne se pose même pas la question du tough_work.
+Si par exemple on place la règle permettant d'obtenir une nice_surface à partir du filler_compound en premier, le programme la trouve tout de suite et ne se pose même pas la question du tough_work.
 Cela est simplement dû au système de back-tracking de Prolog : il ira considérer toutes les possibilités dans l'ordre qui lui est donné jusqu'à satisfaire la demande.
 Cela ressemble un petit peu au fonctionnement humain : un coût d'accès à une idée correspond à l'ordre dans lequel elle vient en tête. Si elle est fraiche (si par exemple elle a servi à résoudre une situation similaire il y a peu), elle viendra plus rapidement et sera naturellement avantagée par rapport aux autres solutions, surtout si elle est applicable.
 
 Non Monotonie
 -------------
 
-La liste inscrite dans les 'causal clauses' présente des idées de solution, et induit par cela une certaine monotonie : plus on a d'idées de solution qui viennent à l'esprit, plus on a de chances de résoudre le problème et de façon différentes de le faire.
+La liste inscrite dans les 'causal clauses' présente des idées de solution, et induit par cela une certaine monotonie : plus on a d'idées de solution qui viennent à l'esprit, plus on a de chances de résoudre le problème et de façons différentes de le faire.
 Mais une autre propriété de ce programme est que lorsque l'on ajoute une 'idée', il faut aussi prévenir le monde des conséquences d'une telle idée. On complète par cela la liste 'physical consequences', qui tend à réduire les faits déduits, en ajoutant des contraintes sur les applications des idées.
 Je pense que c'est de là que vient la non monotonie du programme.
 
 Granularité
 -----------
 
-Du point de vue du programme, une granularité trop grossière réduit la problématique à néant : c'est comme si les deux protagonistes de la conversation n'y connaissaient absolument rien au sujet, et ne pouvaient apporter que des solutions non applicables, fausses, ou dans les cas du programme, pas de solution du tout.
+Du point de vue du programme, une granularité trop grossière réduit la problématique à néant : c'est comme si les deux protagonistes de la conversation ne connaissaient absolument rien au sujet, et ne pouvaient apporter que des solutions non applicables, fausses, ou dans les cas du programme, inexistantes.
 À l'inverse, une granularité très fine permet de trouver les solutions qui tiennent compte du plus de paramètres réels possible, et la discussion qui en découlerait opposerait deux véritables spécialistes du genre.
 Le choix de la granularité dépend donc de la qualification technique que l'on veut prêter aux personnages dans le domaine lié aux problèmes soulevés.
-De plus, une granularité trop fine (par exemple qui agit au niveau moléculaire) prive le processus de toute humanité, et rend la recherche de solutions extrêmement longue de part la part exponentielle de l'algorithme.
+De plus, une granularité trop fine (par exemple qui agit au niveau moléculaire) prive le processus de toute humanité (car trop scientifique), et rend la recherche de solutions extrêmement longue de part la part exponentielle de l'algorithme.
 
 Nature de la connaissance
 -------------------------
@@ -55,7 +55,7 @@ Les phases
 La révision
 -----------
 
-Un optimum local est une solution qui satisfait les désirs, mais sans pour autant trouver la solution optimale sur l'ensemble des possibilités. Cet optimum local est d'autant plus regrettable quand il apporte une solution à quotient négatif. La révision permet de modifier les contraintes et les désirs à la volée, pour chercher une meilleure solution. Une solution pour rendre cette démarche automatique consiste à modifier la valeur détectée comme étant la plus importante désormais. Ainsi, le tough_work aurait reçu automatiquement une valeur de -21, et le filler_compound aurait été trouvé sans intervention humaine.
+Un optimum local est une solution qui satisfait les désirs, mais sans pour autant trouver la solution optimale sur l'ensemble des possibilités. Cet optimum local est d'autant plus regrettable quand il apporte une solution à quotient négatif. La révision permet de modifier les contraintes et les désirs à la volée, pour chercher une meilleure solution. Une solution pour rendre cette démarche automatique consisterait à modifier la valeur détectée comme étant la plus importante désormais. Ainsi, le tough_work aurait reçu automatiquement une valeur de -21, et le filler_compound aurait été trouvé sans intervention humaine. Le revers de cette méthode est une perte potentielle de tous les désirs de départ.
 
 Localité
 --------
@@ -75,4 +75,4 @@ Pour modéliser la théorie de l'esprit, il faut avoir une instance du monde à 
 
 Un choix de la pertinence du dialogue a déjà été fait quand des seuils ont été alloués à chaque sortie texte.
 De mon point de vue, les sorties verbales de chaque acteur d'un dialogue ou d'une argumentation provient directement de ce que chacun pense de l'état de connaissance et du cheminement de la pensée de l'autre. Un travail de simulation est donc nécessaire pour tenter d'avoir un discours pertinent et de ne pas passer pour un imbécile ou lasser son interlocuteur.
-On peut aussi prendre l'exemple du professeur, qui, au lieu de simuler le niveau de compréhension et de connaissance de chacun de ses interlocuteurs, va réduire volontairement le seuil en créant une instance plus simple que tous les élèves, mais pas beaucoup plus simple pour ne pas provoquer l'ennui chez eux. Une recherche du seuil de connaissance commune minimum est nécessaire. Ainsi, le professeur fera évoluer cette instance grâce aux informations qu'il donne, devenant ainsi seul maître et juge des informations nécessaires pour la compréhension de la suite du cours.
+On peut aussi prendre l'exemple du professeur, qui, au lieu de simuler le niveau de compréhension et de connaissance de chacun de ses interlocuteurs, va réduire volontairement le seuil en créant une instance plus simple que tous les élèves, mais pas beaucoup plus simple pour ne pas provoquer l'ennui chez eux. Une recherche du seuil de connaissance commune minimum est ainsi préalablement nécessaire. Ainsi, le professeur fera évoluer cette instance grâce aux informations qu'il donne, devenant ainsi seul maître et juge des informations nécessaires pour la compréhension de la suite du cours.
