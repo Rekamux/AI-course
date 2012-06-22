@@ -62,3 +62,17 @@ Localité
 
 De manière assez évidente, il est nécessaire de travailler de façon locale. La complexité exploserait avec trop de connaissances inutiles, et de toute façon un être humain ne pense pas à d'autres choses quand il cherche activement une solution à un problème.
 
+Raisonnement ou dialogue
+========================
+
+Les deux agents ont une perception différente, et leur interaction peut apporter à chacun d'entre eux des éléments nouveaux sur l'évolution possible du monde.
+De plus, une négociation sur la procédure de révision peut avoir lieu, déterminant si le choix consistant à remettre en cause les échelles de désir est valide et acceptable.
+
+Théorie de l'esprit
+-------------------
+
+Pour modéliser la théorie de l'esprit, il faut avoir une instance du monde à part que l'on attribue à autrui, et que l'on fait évoluer selon les inputs que l'on prête à l'autre. Il faut donc soigneusement séparer pour chaque action, chaque tentative, et chaque évolution, la perception possible des acteurs et les modifications effectives sur leur propre monde.
+
+Un choix de la pertinence du dialogue a déjà été fait quand des seuils ont été alloués à chaque sortie texte.
+De mon point de vue, les sorties verbales de chaque acteur d'un dialogue ou d'une argumentation provient directement de ce que chacun pense de l'état de connaissance et du cheminement de la pensée de l'autre. Un travail de simulation est donc nécessaire pour tenter d'avoir un discours pertinent et de ne pas passer pour un imbécile ou lasser son interlocuteur.
+On peut aussi prendre l'exemple du professeur, qui, au lieu de simuler le niveau de compréhension et de connaissance de chacun de ses interlocuteurs, va réduire volontairement le seuil en créant une instance plus simple que tous les élèves, mais pas beaucoup plus simple pour ne pas provoquer l'ennui chez eux. Une recherche du seuil de connaissance commune minimum est nécessaire. Ainsi, le professeur fera évoluer cette instance grâce aux informations qu'il donne, devenant ainsi seul maître et juge des informations nécessaires pour la compréhension de la suite du cours.
