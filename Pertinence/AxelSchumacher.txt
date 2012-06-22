@@ -1,0 +1,6 @@
+TP Pertinence
+=============
+
+Pour commencer, le programme s'arrête dès qu'il a considéré le burn-off: il semble soit considérer que hard-work n'est pas un problème, soit qu'il n'arrive pas à le résoudre.
+En ajoutant -wire_bross dans default, le programme boucle. Et pour cause : on a à la fois une surface moche à cause de la brosse et une surface belle grâce au burn-off. Il faut donc aussi lui indiquer que wire_bross et burn-off sont incompatibles.
+Ainsi, le programme nous dit que son seul problème est le tough_work, mais qu'il ne peut le résoudre sans être confronté à un problème encore moins voulu. En lui donnant -100 pour le tough_work, il peut continuer à raisonner et inférer que le filler_compound est la solution.

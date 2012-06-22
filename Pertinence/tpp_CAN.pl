@@ -22,10 +22,11 @@ Module principal
 
 :- consult('tpp_knowl.pl').	% chargement de la connaissance particuliere
 :- consult('tpp_world.pl').	% chargement de la simulation
-:- consult('tpp_util0.pl').	% chargement d'utilitaires
+%:- consult('tpp_util0.pl').	% chargement d'utilitaires
+:- consult('tpp_util.pl').	% chargement d'utilitaires
 %%%  Alternative:   :- consult('tpp_util.pl').	% chargement d'utilitaires si le systeme graphique est present
 
-trace_level(2).	% used in 'tpp_util0', but not in 'tpp_util' where trace level is determined from within a window
+trace_level(5).	% used in 'tpp_util0', but not in 'tpp_util' where trace level is determined from within a window
 
 
 % qsave_program('paradise',[goal=go,autoload=true, stand_alone=true]).

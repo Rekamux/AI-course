@@ -96,6 +96,8 @@ A6- not nice surface
 	default(-soft_wood).
 	default(-several_layers).
 	default(-wood_wrecked).
+%default(-burn_off).
+  default(-wire_brush).
 
 	% causal clauses
 	nice_surface <=== burn_off.		
@@ -103,6 +105,8 @@ A6- not nice surface
 	nice_surface <=== filler_compound + -wood_wrecked.
 	nice_doors <=== repaint + nice_surface.
 
+  % incompatibilities
+  incompatible([wire_brush, burn_off]).
 	
 	% physical consequences
 	tough_work <=== burn_off + mouldings + -wire_brush.
