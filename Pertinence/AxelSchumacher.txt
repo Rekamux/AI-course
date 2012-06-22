@@ -35,3 +35,15 @@ Nature de la connaissance
 
 Nous avons déjà eu des exemples de connaissances qui semblent sensées et qui malgré tout donnent des résultats non pertinents, comme avec l'incompatibilité entre le burn_off et le wire_bross. Cela vient juste d'une non exhaustivité de la connaissance : on peut apporter des éléments justes, mais qui sont inutiles sans toutes les connaissances qui vont avec, et on appelle souvent cela le sens commun, ou l'avantage suprême de l'homme sur la machine.
 Produire des interventions de manière stable avec une connaissance raisonnable semble possible, dès lors que la connaissance raisonnable inclue le sens commun nécessaire pour la traiter. Sinon, il faut apprendre, et ce sur une longue période.
+
+La procédure CAN
+----------------
+
+Les phases
+----------
+
+- détection des contradictions : si on la supprime, on peut obtenir des boucles infinies comme celle qui opposait le burn_off et le wire_bross.
+- tentative de solution : si on ne cherche pas à satisfaire le désir en cherchant une solution, toute la manœuvre devient caduque. Si on ne tente pas d'effectuer l'action qui peut faire évoluer le monde selon ses désirs, on ne pourra jamais savoir si cette solution a une chance de fonctionner.
+- propagation sur les causes par abduction : cette étape est cruciale car elle consiste à trouver la ou les règles qui ont induit l'état de fait non voulu. On ne peut pas diagnostiquer la maladie si l'on ne peut pas faire le lien entre les symptômes et leur cause.
+- abandon : comme dans toute recherche de solution, le back-tracking est important. Si l'on échoue, il faut se souvenir que l'on a abandonné cette idée pour ne plus refaire cette erreur quand on remonte dans l'arbre des solutions.
+- révision : pour trouver une solution, il est parfois nécessaire de faire des compromis et de revoir certains de ses objectifs à la baisse. Par exemple, au début de l'exercice, il était moins coûteux de se fatiguer que de réussir à réparer les portes. Indiquer une recherche du moindre effort comme une priorité maximale permet de trouver d'autres solutions.
