@@ -18,4 +18,6 @@ Cela ressemble un petit peu au fonctionnement humain : un coût d'accès à une 
 Non Monotonie
 -------------
 
-
+La liste inscrite dans les 'causal clauses' présente des idées de solution, et induit par cela une certaine monotonie : plus on a d'idées de solution qui viennent à l'esprit, plus on a de chances de résoudre le problème et de façon différentes de le faire.
+Mais une autre propriété de ce programme est que lorsque l'on ajoute une 'idée', il faut aussi prévenir le monde des conséquences d'une telle idée. On complète par cela la liste 'physical consequences', qui tend à réduire les faits déduits, en ajoutant des contraintes sur les applications des idées.
+Je pense que c'est de là que vient la non monotonie du programme.
