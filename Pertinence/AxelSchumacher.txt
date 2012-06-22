@@ -1,6 +1,21 @@
 TP Pertinence
 =============
 
+Modification de la connaissance
+-------------------------------
+
 Pour commencer, le programme s'arrête dès qu'il a considéré le burn-off: il semble soit considérer que hard-work n'est pas un problème, soit qu'il n'arrive pas à le résoudre.
 En ajoutant -wire_bross dans default, le programme boucle. Et pour cause : on a à la fois une surface moche à cause de la brosse et une surface belle grâce au burn-off. Il faut donc aussi lui indiquer que wire_bross et burn-off sont incompatibles.
 Ainsi, le programme nous dit que son seul problème est le tough_work, mais qu'il ne peut le résoudre sans être confronté à un problème encore moins voulu. En lui donnant -100 pour le tough_work, il peut continuer à raisonner et inférer que le filler_compound est la solution.
+
+Déclarativité
+-------------
+
+Si par exemple on place la règle permettant d'obtenir des nice_surface à partir du filler_compound en premier, le programme la trouve tout de suite et ne se pose même pas la question du tough_work.
+Cela est simplement dû au système de back-tracking de Prolog : il ira considérer toutes les possibilités dans l'ordre qui lui est donné jusqu'à satisfaire la demande.
+Cela ressemble un petit peu au fonctionnement humain : un coût d'accès à une idée correspond à l'ordre dans lequel elle vient en tête. Si elle est fraiche (si par exemple elle a servi à résoudre une situation similaire il y a peu), elle viendra plus rapidement et sera naturellement avantagée par rapport aux autres solutions, surtout si elle est applicable.
+
+Non Monotonie
+-------------
+
+
