@@ -29,3 +29,9 @@ Du point de vue du programme, une granularité trop grossière réduit la probl�
 À l'inverse, une granularité très fine permet de trouver les solutions qui tiennent compte du plus de paramètres réels possible, et la discussion qui en découlerait opposerait deux véritables spécialistes du genre.
 Le choix de la granularité dépend donc de la qualification technique que l'on veut prêter aux personnages dans le domaine lié aux problèmes soulevés.
 De plus, une granularité trop fine (par exemple qui agit au niveau moléculaire) prive le processus de toute humanité, et rend la recherche de solutions extrêmement longue de part la part exponentielle de l'algorithme.
+
+Nature de la connaissance
+-------------------------
+
+Nous avons déjà eu des exemples de connaissances qui semblent sensées et qui malgré tout donnent des résultats non pertinents, comme avec l'incompatibilité entre le burn_off et le wire_bross. Cela vient juste d'une non exhaustivité de la connaissance : on peut apporter des éléments justes, mais qui sont inutiles sans toutes les connaissances qui vont avec, et on appelle souvent cela le sens commun, ou l'avantage suprême de l'homme sur la machine.
+Produire des interventions de manière stable avec une connaissance raisonnable semble possible, dès lors que la connaissance raisonnable inclue le sens commun nécessaire pour la traiter. Sinon, il faut apprendre, et ce sur une longue période.
