@@ -21,3 +21,11 @@ Non Monotonie
 La liste inscrite dans les 'causal clauses' présente des idées de solution, et induit par cela une certaine monotonie : plus on a d'idées de solution qui viennent à l'esprit, plus on a de chances de résoudre le problème et de façon différentes de le faire.
 Mais une autre propriété de ce programme est que lorsque l'on ajoute une 'idée', il faut aussi prévenir le monde des conséquences d'une telle idée. On complète par cela la liste 'physical consequences', qui tend à réduire les faits déduits, en ajoutant des contraintes sur les applications des idées.
 Je pense que c'est de là que vient la non monotonie du programme.
+
+Granularité
+-----------
+
+Du point de vue du programme, une granularité trop grossière réduit la problématique à néant : c'est comme si les deux protagonistes de la conversation n'y connaissaient absolument rien au sujet, et ne pouvaient apporter que des solutions non applicables, fausses, ou dans les cas du programme, pas de solution du tout.
+À l'inverse, une granularité très fine permet de trouver les solutions qui tiennent compte du plus de paramètres réels possible, et la discussion qui en découlerait opposerait deux véritables spécialistes du genre.
+Le choix de la granularité dépend donc de la qualification technique que l'on veut prêter aux personnages dans le domaine lié aux problèmes soulevés.
+De plus, une granularité trop fine (par exemple qui agit au niveau moléculaire) prive le processus de toute humanité, et rend la recherche de solutions extrêmement longue de part la part exponentielle de l'algorithme.
