@@ -1,5 +1,9 @@
 TP Pertinence
 =============
+=============
+
+Représentation des connaissances
+================================
 
 Modification de la connaissance
 -------------------------------
@@ -37,7 +41,7 @@ Nous avons déjà eu des exemples de connaissances qui semblent sensées et qui 
 Produire des interventions de manière stable avec une connaissance raisonnable semble possible, dès lors que la connaissance raisonnable inclue le sens commun nécessaire pour la traiter. Sinon, il faut apprendre, et ce sur une longue période.
 
 La procédure CAN
-----------------
+================
 
 Les phases
 ----------
@@ -47,3 +51,14 @@ Les phases
 - propagation sur les causes par abduction : cette étape est cruciale car elle consiste à trouver la ou les règles qui ont induit l'état de fait non voulu. On ne peut pas diagnostiquer la maladie si l'on ne peut pas faire le lien entre les symptômes et leur cause.
 - abandon : comme dans toute recherche de solution, le back-tracking est important. Si l'on échoue, il faut se souvenir que l'on a abandonné cette idée pour ne plus refaire cette erreur quand on remonte dans l'arbre des solutions.
 - révision : pour trouver une solution, il est parfois nécessaire de faire des compromis et de revoir certains de ses objectifs à la baisse. Par exemple, au début de l'exercice, il était moins coûteux de se fatiguer que de réussir à réparer les portes. Indiquer une recherche du moindre effort comme une priorité maximale permet de trouver d'autres solutions.
+
+La révision
+-----------
+
+Un optimum local est une solution qui satisfait les désirs, mais sans pour autant trouver la solution optimale sur l'ensemble des possibilités. Cet optimum local est d'autant plus regrettable quand il apporte une solution à quotient négatif. La révision permet de modifier les contraintes et les désirs à la volée, pour chercher une meilleure solution. Une solution pour rendre cette démarche automatique consiste à modifier la valeur détectée comme étant la plus importante désormais. Ainsi, le tough_work aurait reçu automatiquement une valeur de -21, et le filler_compound aurait été trouvé sans intervention humaine.
+
+Localité
+--------
+
+De manière assez évidente, il est nécessaire de travailler de façon locale. La complexité exploserait avec trop de connaissances inutiles, et de toute façon un être humain ne pense pas à d'autres choses quand il cherche activement une solution à un problème.
+
